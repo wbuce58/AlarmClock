@@ -1,0 +1,30 @@
+{
+  "name": "opentoolchainalarmclock",
+  "version": "1.0.0",
+  "description": "Lab to create a toolchain using a simple alarm clock app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melickm/OpenToolchainAlarmClock.git"
+  },
+  "author": "Joel Cayne",
+  "contributors": [
+    "Mike Melick",
+    "Sid Sharma"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/melickm/OpenToolchainAlarmClock/issues"
+  },
+  "homepage": "https://github.com/melickm/OpenToolchainAlarmClock#readme",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "express": "^4.14.1",
+    "request": "^2.79.0",
+    "underscore": "^1.8.3",
+    "uuid": "^3.0.1"
+  }
+}
