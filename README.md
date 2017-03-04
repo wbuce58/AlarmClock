@@ -60,6 +60,7 @@ To make things a bit easier there's some starter code in a GitHub repository. Yo
 1. There are two stages in this Delivery Pipeline.  
   - The first stage will pull the code from the GitHub repository to create a build. This is set to happen automatically on a commit, and you'll see this later in the lab.
   - The second stage will deploy the code to Bluemix to run your app.  But wait!  There was a problem with the deploy.  Notice the red banner indicating the stage failed.
+
     ![Deploy Failed](assets/README-84779.png)
 
 ## Let's fix it
