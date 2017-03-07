@@ -60,7 +60,7 @@ function createAlarm(req, res) {
         time: 'now'
     };
     if(req.body && req.body.event)
-        alarms[uuid].event = req.body.event
+        alarms[uuid].event = req.body.event;
     if(req.body && req.body.key)
         alarms[uuid].key = req.body.key;
     

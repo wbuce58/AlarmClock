@@ -23,9 +23,8 @@ document.getElementsByClassName('button')[0].onclick= () => {
     if(readySubmit){
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/alarm', true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.send('event=' + event.value + '&key=' + key.value + '&time=' + (minute.value * 60 * 1000));
-
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(JSON.stringify({'event': event.value, 'key': key.value, 'time': + (minute.value * 60 * 1000)}));
         xhr.onreadystatechange = function() {
             if(xhr.readyState == 4 && xhr.status == 200) {
                 console.log(xhr.responseText)
