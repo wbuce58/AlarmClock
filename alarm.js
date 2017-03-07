@@ -4,7 +4,6 @@ var _ = require('underscore');
 var router = express.Router();
 
 router.delete('/:id', deleteAlarm);
-router.get('/:id', getAlarm);
 router.get('/', getAlarms);
 router.post('/', createAlarm);
 
@@ -12,7 +11,15 @@ module.exports = router;
 
 const uuidV4 = require('uuid/v4');
 
-// Store the alarms in a hash instead of persistent storage
+/*
+    Store the alarms in a hash instead of persistent storage
+    This Object stores a hash using the alarm id as the key.
+    In the stored Object, the format for an entry by id is:
+    time: the time in milliseconds when the alarm will expire
+    key: 
+    event:
+    timeout: The alarm Object (used to cancel or repeat the request).
+*/ 
 var alarms = {};
 
 function deleteAlarm(req, res) {
@@ -31,22 +38,6 @@ function deleteAlarm(req, res) {
     return res.status(204).send();
 }
 
-function getAlarm(req, res) {
-    // Ensure the id is valid.
-    var id = req.params.id;
-    if(!id || typeof id !== 'string' || id.length != 36) {
-        return res.status(400).json({message: 'Invalid id provided.'});
-    }
-
-    // Try to locate the requested entry.
-    var entry = alarms[id];
-    if(!entry) {
-        return res.status(404).json({message: 'No such alarm found.'});
-    }
-
-    return res.send(_.pick(entry, 'time', 'event'));
-}
-
 function getAlarms(req, res) {
     var alarmsCopy = _.mapObject(alarms, (alarm, key) => {
        return _.pick(alarm, 'time', 'event');
@@ -56,18 +47,22 @@ function getAlarms(req, res) {
 
 function createAlarm(req, res) {
     var uuid = uuidV4();
-    alarms[uuid] = {
-        time: 'now'
-    };
+    alarms[uuid] = {};
     if(req.body && req.body.event)
         alarms[uuid].event = req.body.event;
     if(req.body && req.body.key)
         alarms[uuid].key = req.body.key;
+
+    // We expect the incoming time to be the time in milliseconds in the future of when to expire
+    if(!req.body || !req.body.time || typeof req.body.time !== 'number') {
+        console.error('Invalid time parameter when creating the alarm: ' + req.body.time);
+        return res.status(400).json({message: 'The time request body parameter was invalid.'});
+    }
     
     // Set an alarm to go off in a future time period from now, e.g. 5 minutes from now.
     var currentTime = new Date();
-    currentTime.setSeconds(currentTime.getSeconds()+5);
-    // currentTime.setMinutes(currentTime.getMinutes()+1);
+    currentTime.setTime(currentTime.getTime() + req.body.time);
+    alarms[uuid].time = currentTime.getTime();
     alarms[uuid].timeout = setTimeout(alarm, currentTime - Date.now(), uuid, 0);
 
     return res.send({ id: uuid });
