@@ -34,7 +34,7 @@ function deleteAlarm(req, res) {
         clearTimeout(alarms[id].timeout);
         delete alarms[id];
     }
-    console.log('deleted');
+    console.log(`Deleted alarm ${ id }`);
     return res.status(204).send();
 }
 
@@ -55,7 +55,7 @@ function createAlarm(req, res) {
 
     // We expect the incoming time to be the time in milliseconds in the future of when to expire
     if(!req.body || !req.body.time || typeof req.body.time !== 'number') {
-        console.error('Invalid time parameter when creating the alarm: ' + req.body.time);
+        console.error(`Invalid time parameter when creating the alarm: ${ req.body.time }`);
         return res.status(400).json({message: 'The time request body parameter was invalid.'});
     }
     
@@ -70,14 +70,15 @@ function createAlarm(req, res) {
 }
 
 function alarm(id, count) {
+    console.log(`Alarmed for ${ id } on count ${ count }`);
+    sendMessage(id);
     // Repeat the alarm every 5 seconds, if it hasn't been cancelled.
     alarms[id].timeout = setTimeout((id, count) => {
-        console.log(`Alarmed for ${ id } on count ${ count }`);
-        // Turn off the alarm if there's no answer after some number of attempts
-        if(count >= 5) {
+        // Turn off the alarm if there's no answer after some number of attempts (5 here)
+        if(count === 4) {
             clearTimeout(alarms[id].timeout);
+            alarms[id].status = 'inactive';
         } else {
-            sendMessage(id);
             count++;
             // Try the alarm again
             alarm(id, count);
@@ -89,11 +90,10 @@ function sendMessage(id) {
     var event = alarms[id].event;
     var key = alarms[id].key;
     if(event && key) {
-        console.log('Sending the message ' + event + ' ' + key);
+        console.log(`Sending the message ${ event } ${ key } `);
         request.post('https://maker.ifttt.com/trigger/' +event + '/with/key/' + key, (err, res, body) => {
             if(err) {
                 console.log('Error ' + err);
-                alarms[id].status = 'inactive';
             } else {
                 console.log(JSON.stringify(res,null,3));
                 console.log(body);
