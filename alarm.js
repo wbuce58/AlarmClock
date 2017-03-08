@@ -40,7 +40,7 @@ function deleteAlarm(req, res) {
 
 function getAlarms(req, res) {
     var alarmsCopy = _.mapObject(alarms, (alarm, key) => {
-       return _.pick(alarm, 'time', 'event');
+       return _.pick(alarm, 'time', 'event', 'status');
     });
     return res.send(alarmsCopy);
 }
