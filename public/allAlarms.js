@@ -2,7 +2,7 @@ var alarms={};
 
 var theTemplateScript = document.getElementById('content').innerHTML;
 var theTemplate = Handlebars.compile(theTemplateScript);
-var theCompiledHtml = theTemplate(context);
+var theCompiledHtml = theTemplate();
 
 document.getElementById('root').innerHTML=theCompiledHtml;
 
@@ -44,14 +44,17 @@ function updateTimerAndNotifs() { //update timer and notifications
             var delData = document.createElement('td');
             var deleteBtn= document.createElement('button');
             deleteBtn.classList.add('delete');
-            deleteBtn.onclick=deleteTimer(key); //add event listener
-            deleteBtn.classList().add('delete');
+            deleteBtn.addEventListener('click', function(){//add event listener for deleting timer
+                deleteTimer(key)
+            });
+            deleteBtn.classList.add('delete');
             delData.appendChild(deleteBtn);
-            var diff= alarms[key]["time"] - date.getTime();
+            var diff= alarms[key]["time"] - date.getTime();//assume positive time difference
             var second = ('0' + Math.floor((diff/1000)% 60)).slice(-2);
             var minute = ('0' + Math.floor((diff/1000/60))).slice(-2);
             timeLeft.innerHTML=minute + ':' + second;
             status.innerHTML= alarms[key].status;
+            deleteBtn.innerHTML='Delete';
             tableRow.appendChild(timeLeft);
             tableRow.appendChild(status);
             tableRow.appendChild(delData);
@@ -69,7 +72,8 @@ function deleteTimer(key){
     xhr.open('POST', '/alarm/' + key, true);//////////////////////////////////////////check
     xhr.send(null);
 }
-
+getAlarms();
+updateTimerAndNotifs();
 window.setInterval(getAlarms, 5000);
 window.setInterval(updateTimerAndNotifs, 1000);
 

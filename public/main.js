@@ -66,6 +66,7 @@ function updateTimerAndNotifs() { //update timer and notifications
 
     document.getElementsByClassName('active')[0].innerHTML='Active alarms : ' + activeAlarms;//number of active alarms
 }
-
+getAlarms();
+updateTimerAndNotifs();
 window.setInterval(getAlarms, 5000);
 window.setInterval(updateTimerAndNotifs, 1000);
