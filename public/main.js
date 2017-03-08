@@ -43,20 +43,16 @@ function getAlarms() {
 function updateTimerAndNotifs() { //update timer and notifications
     var smallestTime=Infinity;
     var date = new Date();
-    var activeAlarms=Object.keys(alarms).length;
+    var activeAlarms=0;
+    Object.keys(alarms).forEach(function(key){//checks to see if alarm is active
+        if(alarms[key].status==='active')
+            activeAlarms++;
+    });
 
     Object.keys(alarms).forEach(function(key){
-        if((alarms[key]["time"]-date.getTime()) < 0){ //delete if alarm is negative
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/alarm/' + key, true);////////////////////////check
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.send(null);
-            delete alarms[key];
-        }
-        else if((alarms[key]["time"]-date.getTime()) < smallestTime){ //find the smallest number out of all the alarms
+        if(((alarms[key]["time"]-date.getTime()) < smallestTime) && (alarms[key]["time"]-date.getTime() > 0)){ //find the smallest number out of all the alarms
             smallestTime=alarms[key]["time"]-date.getTime();
         }
-
     });
 
     if(smallestTime!==Infinity){
@@ -64,7 +60,7 @@ function updateTimerAndNotifs() { //update timer and notifications
         var minutes = ('0' + Math.floor((smallestTime/1000/60))).slice(-2);
         document.getElementsByClassName('time')[0].innerHTML=minutes + ':' + seconds;
     }
-    if(smallestTime===Infinity){
+    else if(smallestTime===Infinity){
         document.getElementsByClassName('time')[0].innerHTML= '00:00';
     }
 
