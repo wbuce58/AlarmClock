@@ -69,7 +69,8 @@ function deleteTimer(key){
     delete alarms[key];
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/alarm/' + key, true);//////////////////////////////////////////check
+    xhr.open('DELETE', '/alarm/' + key, true);//////////////////////////////////////////check
+    xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(null);
 }
 getAlarms();
