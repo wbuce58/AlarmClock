@@ -64,6 +64,7 @@ function createAlarm(req, res) {
     currentTime.setTime(currentTime.getTime() + req.body.time);
     alarms[uuid].time = currentTime.getTime();
     alarms[uuid].timeout = setTimeout(alarm, currentTime - Date.now(), uuid, 0);
+    alarms[uuid].status = 'active';
 
     return res.send({ id: uuid });
 }
@@ -92,6 +93,7 @@ function sendMessage(id) {
         request.post('https://maker.ifttt.com/trigger/' +event + '/with/key/' + key, (err, res, body) => {
             if(err) {
                 console.log('Error ' + err);
+                alarms[id].status = 'inactive';
             } else {
                 console.log(JSON.stringify(res,null,3));
                 console.log(body);
