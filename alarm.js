@@ -34,7 +34,7 @@ function deleteAlarm(req, res) {
         clearTimeout(alarms[id].timeout);
         delete alarms[id];
     }
-
+    console.log('deleted');
     return res.status(204).send();
 }
 

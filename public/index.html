@@ -1,16 +1,17 @@
 <html>
     <head>
         <title>Alarm App</title>
-        <link rel="stylesheet" type="text/css" href="/mainPage.css">
+        <link rel="stylesheet" type="text/css" href="/main.css">
         <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
     </head>
     <body id="root">
         <script id="content"  type="text/x-handlebars-template">
             <h1 class="title">Timer Application</h1>
-            <p class="info">A text message will be sent to your phone once the timer has finished</p>
+            <p class="info">You will be notified once the timer has finished</p>
                 <form class="flex">
                 <div class="time">00:00</div>
+                <div class="active"></div>
                 <input class="input event" type="text" placeholder="Enter event"/>
                 <input class="input key" type="text" placeholder="Enter key"/>
                 <input class="input minute" type="number" placeholder="Enter in minutes"/>
