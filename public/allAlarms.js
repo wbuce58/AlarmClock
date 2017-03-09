@@ -5,6 +5,12 @@ var theTemplateScript = document.getElementById('content').innerHTML;
 var theTemplate = Handlebars.compile(theTemplateScript);
 var theCompiledHtml = theTemplate();
 
+var deleteParam=window.location.search;
+
+if(deleteParam){ //if the url has a query parameter called delete, delete the timer
+  var deleteId= deleteParam.slice(deleteParam.indexOf('=')+1);
+  deleteTimer(deleteId);
+}
 document.getElementById('root').innerHTML=theCompiledHtml;
 
 var notifContainer = document.createElement('div'); //container(flex box) for notifications
