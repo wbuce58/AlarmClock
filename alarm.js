@@ -74,9 +74,9 @@ function alarm(id, host, count) {
     console.log(`Alarmed for ${ id } on count ${ count }`);
     sendMessage(id, host);
     // Repeat the alarm every 20 seconds, if it hasn't been cancelled.
-    alarms[id].timeout = setTimeout((id, count) => {
+    alarms[id].timeout = setTimeout((id, host, count) => {
         // Turn off the alarm if there's no answer after some number of attempts (5 here)
-        if(count === 4) {
+        if(count === 3) {
             clearTimeout(alarms[id].timeout);
             alarms[id].status = 'inactive';
         } else {
@@ -84,7 +84,7 @@ function alarm(id, host, count) {
             // Try the alarm again
             alarm(id, host, count);
         }
-    }, 20000, id, host, count++);
+    }, 25000, id, host, count++);
 }
 
 function sendMessage(id, host) {
@@ -95,7 +95,7 @@ function sendMessage(id, host) {
         var options = {
             url: 'https://maker.ifttt.com/trigger/' + event + '/with/key/' + key,
             body: {
-                value1: `An alarm occurred, navigate to http://${ host }/alarm/all?delete=${ id } to stop the alarm.`
+                value1: `An alarm occurred, navigate to http://${ host }/all?delete=${ id } to stop the alarm.`
             },
             json: true
         };
