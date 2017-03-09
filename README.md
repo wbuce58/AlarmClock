@@ -1,18 +1,20 @@
 # OpenToolchainAlarmClock
-In this lab, you'll create a simple toolchain that will enable to you iteratively deploy and alarm clock service to Bluemix.    
+In this lab, you'll create a simple toolchain that will enable to you iteratively deploy an alarm clock application to Bluemix.
+You will:
+- [Setup a toolchain](README.md#setting-up-your-development-toolchain)
 
 ## Getting Started
-Before getting started, you'll require a valid ID for Bluemix, GitHub.com and Twilio. Don't worry you can try them all for free!  If you don't have an existing ID, sign up for one by following the steps below:
+Before getting started, you'll require a valid ID for Bluemix, GitHub.com and, optionally, IFTTT. Don't worry you can try them all for free!  If you don't have an existing ID, sign up for one by following the steps below:
 
 ### IBM Bluemix Account
 1. Navigate to https://console.ng.bluemix.net/registration/ and sign up
 1. As part of the Bluemix registration process, you will receive an email asking you to confirm your account.  If you do not confirm, you are not registered.  If you do not receive a confirmation email, send a note to [id@bluemix.net](mailto:id@bluemix.net).
 
 ### GitHub.com
-1. Navigate to https://github.com and sign up.
+1. Navigate to https://github.com, review the [terms of service](https://help.github.com/articles/github-terms-of-service/), and sign up.
 
-### Twilio ID
-1. Navigate to https://www.twilio.com/try-twilio?promo=bluemix and sign up.
+### IFTTT ID
+1. Navigate to https://ifttt.com, review the [terms of service](https://ifttt.com/terms), and sign up.
 
 ## Setting up your development toolchain
 To make things a bit easier there's some starter code in a GitHub repository. You'll create a toolchain with a copy of the code, a pipeline to build/deploy the code and even an editor to tinker with the code. Sounds like a lot of work? Not really. Just a few clicks and you'll be all setup.
