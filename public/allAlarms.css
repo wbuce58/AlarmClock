@@ -5,7 +5,7 @@ body{
     width: 60%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 4%;
+    margin-top: 2%;
     text-align: center;
 }
 #title{
@@ -43,20 +43,36 @@ tr:nth-child(odd) {
     position: absolute;
     right:0px;
     top:0px;
-    width: 20%;
+    width: 13%;
 }
 .notification{
     display: inline-block;
-    background-color: ghostwhite;
+    background-color: khaki;
     margin-bottom: 3px;
     height: 80px;
     font-size: 20px;
     text-align: center;
     position: relative;
+    border-left: 5px;
+    border-left-style: solid;
+}
+.notification:nth-child(even){
+    border-left-color: orangered;
+}
+.notification:nth-child(odd){
+    border-left-color: black;
 }
 .close{
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 2px;
+    right: 5px;
     cursor: pointer;
+}
+.main{
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+    font-family: Helvetica Neue;
+    font-size: 14px;
+    color: rgb(59, 119, 182);
 }

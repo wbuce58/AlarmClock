@@ -36,7 +36,7 @@ function updateTimerAndNotifs() { //update timer and notifications
             }
             else {
                 document.getElementById(key).children[0].innerHTML = '00:00'; //otherwise set it to 00:00
-                document.getElementById(key).children[1].innerHTML = alarms[key].status;
+                document.getElementById(key).children[1].innerHTML = alarms[key].status.charAt(0).toUpperCase() + alarms[key].status.slice(1);
             }
         }
         else{//create the row for the new timer
