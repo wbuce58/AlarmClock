@@ -16,9 +16,10 @@ const uuidV4 = require('uuid/v4');
     This Object stores a hash using the alarm id as the key.
     In the stored Object, the format for an entry by id is:
     time: the time in milliseconds when the alarm will expire
-    key: 
-    event:
+    key: The key value defined on the Maker service in IFTTT.
+    event: The event value from the Maker service in IFTTT.
     timeout: The alarm Object (used to cancel or repeat the request).
+    status: Either active or inactive.
 */ 
 var alarms = {};
 
@@ -72,7 +73,7 @@ function createAlarm(req, res) {
 function alarm(id, count) {
     console.log(`Alarmed for ${ id } on count ${ count }`);
     sendMessage(id);
-    // Repeat the alarm every 5 seconds, if it hasn't been cancelled.
+    // Repeat the alarm every 20 seconds, if it hasn't been cancelled.
     alarms[id].timeout = setTimeout((id, count) => {
         // Turn off the alarm if there's no answer after some number of attempts (5 here)
         if(count === 4) {
@@ -83,19 +84,18 @@ function alarm(id, count) {
             // Try the alarm again
             alarm(id, count);
         }
-    }, 5000, id, count++);
+    }, 20000, id, count++);
 }
 
 function sendMessage(id) {
     var event = alarms[id].event;
     var key = alarms[id].key;
     if(event && key) {
-        console.log(`Sending the message ${ event } ${ key } `);
-        request.post('https://maker.ifttt.com/trigger/' +event + '/with/key/' + key, (err, res, body) => {
+        console.log(`Sending the message to event ${ event } for key ${ key } `);
+        request.post('https://maker.ifttt.com/trigger/' + event + '/with/key/' + key, (err, res, body) => {
             if(err) {
-                console.log('Error ' + err);
+                console.log(`An error occurred while sending the message to IFTTT ${ err } `);
             } else {
-                console.log(JSON.stringify(res,null,3));
                 console.log(body);
             }
         });
