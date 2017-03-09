@@ -32,7 +32,7 @@ function updateTimerAndNotifs() { //update timer and notifications
                 var seconds = ('0' + Math.floor((difference/1000)% 60)).slice(-2);
                 var minutes = ('0' + Math.floor((difference/1000/60))).slice(-2);
                 document.getElementById(key).children[0].innerHTML = minutes + ':' + seconds;
-                document.getElementById(key).children[1].innerHTML = alarms[key].status;
+                document.getElementById(key).children[1].innerHTML =  alarms[key].status.charAt(0).toUpperCase() + alarms[key].status.slice(1);
             }
             else {
                 document.getElementById(key).children[0].innerHTML = '00:00'; //otherwise set it to 00:00
@@ -58,7 +58,7 @@ function updateTimerAndNotifs() { //update timer and notifications
             var second = ('0' + Math.floor((diff/1000)% 60)).slice(-2);
             var minute = ('0' + Math.floor((diff/1000/60))).slice(-2);
             timeLeft.innerHTML=minute + ':' + second;
-            status.innerHTML= alarms[key].status;
+            status.innerHTML= alarms[key].status.charAt(0).toUpperCase() + alarms[key].status.slice(1);
             deleteBtn.innerHTML='Delete';
             tableRow.appendChild(timeLeft);
             tableRow.appendChild(status);

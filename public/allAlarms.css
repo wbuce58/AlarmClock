@@ -1,9 +1,41 @@
 body{
-    background-color:#ffffff;
+    background-color: #f5f7fa;
+}
+#table{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4%;
+    text-align: center;
+}
+#title{
+    text-align: center;
+    font-family: Helvetica Neue;
+    font-size: 30px;
+    margin-top: 40px;
+}
+.delete{
+    background-color: rgb(61, 112, 178);
+    color: white;
+    border-color: transparent;
+    cursor: pointer;
 }
 .time{
     font-family: 'Orbitron';
     font-size: 20px;
+}
+th{
+    background-color: white;
+}
+tr{
+    height: 40px;
+
+}
+tr:nth-child(even) {
+    background-color: rgba(61,112,178,0.1);
+}
+tr:nth-child(odd) {
+    background-color: white;
 }
 .container{
     display: inline-flex;
