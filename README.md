@@ -2,6 +2,11 @@
 In this lab, you'll create a simple toolchain that will enable to you iteratively deploy an alarm clock application to Bluemix.
 You will:
 - [Setup a toolchain](README.md#setting-up-your-development-toolchain)
+- [Review the automated deploy](README.md#uh-oh)
+- [Update the starter code](README.md#lets-fix-it)
+- [Interact with the application](README.md#running-code)
+- [Add an alarm](README.md#set-an-alarm)
+- [Remove an alarm](README.md#disable-an-alarm)
 
 ## Getting Started
 Before getting started, you'll require a valid ID for Bluemix, GitHub.com and, optionally, IFTTT. Don't worry you can try them all for free!  If you don't have an existing ID, sign up for one by following the steps below:
@@ -11,16 +16,40 @@ Before getting started, you'll require a valid ID for Bluemix, GitHub.com and, o
 1. As part of the Bluemix registration process, you will receive an email asking you to confirm your account.  If you do not confirm, you are not registered.  If you do not receive a confirmation email, send a note to [id@bluemix.net](mailto:id@bluemix.net).
 
 ### GitHub.com
-1. Navigate to https://github.com, review the [terms of service](https://help.github.com/articles/github-terms-of-service/), and sign up.
+1. Navigate to https://github.com, review the [terms of service](https://help.github.com/articles/github-terms-of-service/), and, if you agree with the terms, create an account.
+Note: You will not be able to complete the lab as described without a GitHub account.
 
-### IFTTT ID
-1. Navigate to https://ifttt.com, review the [terms of service](https://ifttt.com/terms), and sign up.
+### IFTTT
+1. Navigate to https://ifttt.com, review the [terms of service](https://ifttt.com/terms), and, if you agree with the terms, create an account.
+Note: You can still continue with the lab, if you do not create an IFTTT account.
+
+#### Configuring IFTTT
+IFTTT allows you to create an applet which will complete an action based on a trigger. To configure IFTTT to send a notification, such as an email or text message:
+1. Navigate to https://ifttt.com and choose My Applets from the navigation bar.
+1. In the My Applets page, click **New Applet**.
+1. In the statement `if +this then that`, click **+this**.
+1. In the services selection page, enter `maker`, and select the Maker service. Maker can be used to receive a web request which will trigger an action.
+1. Select the trigger `Receive a web request`.
+1. Choose an event name, note the name down for later use, and click **Create trigger**.
+1. The statement now reads `if maker then +that`, click **+that**.
+1. In the services selection page, you will select the notification method when the alarm is activated. For example, to receive an email, select the Email service. Alternatively, to receive a text message, choose the SMS service.
+1. Depending on the service select, apply the action.
+1. Complete the action fields. You can choose to update the notification subject and body, or leave them as is. Click **Create action**.
+1. Review the applet and click **Finish**.
+
+#### Finding your IFTTT Maker key
+1. Navigate to https://ifttt.com and choose Search from the navigation bar.
+1. In the Search page, enter `maker` to filter for the Maker service. Click on the Maker service.
+1. In the top right, click **Settings**.
+1. Copy and navigate to the URL location.
+1. The key is displayed.
+
 
 ## Setting up your development toolchain
-To make things a bit easier there's some starter code in a GitHub repository. You'll create a toolchain with a copy of the code, a pipeline to build/deploy the code and even an editor to tinker with the code. Sounds like a lot of work? Not really. Just a few clicks and you'll be all setup.
+To make things a bit easier, you will use the starter code available in this GitHub repository. You'll create a toolchain with a copy of the code, a pipeline to build/deploy the code and even an editor to tinker with the code. Sounds like a lot of work? Not really. With just a few clicks, you'll be all setup.
 
-1. Once logged into [Bluemix](https://console.ng.bluemix.net), you'll be presented with a different view depending on if you have any existing applications or not.  
-1. From the hamburger menu near the top left of the screen click **Services** and the click **DevOps**.
+1. Begin by logging into [Bluemix](https://console.ng.bluemix.net). Your view may differ, if you have existing applications.
+1. From the hamburger menu near the top left of the screen click **Services** and then click **DevOps**.
 
   ![Hamburger Menu](assets/README-cb995.png)
 
