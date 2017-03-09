@@ -59,20 +59,20 @@ function createAlarm(req, res) {
         console.error(`Invalid time parameter when creating the alarm: ${ req.body.time }`);
         return res.status(400).json({message: 'The time request body parameter was invalid.'});
     }
-    
+
     // Set an alarm to go off in a future time period from now, e.g. 5 minutes from now.
     var currentTime = new Date();
     currentTime.setTime(currentTime.getTime() + req.body.time);
     alarms[uuid].time = currentTime.getTime();
-    alarms[uuid].timeout = setTimeout(alarm, currentTime - Date.now(), uuid, 0);
+    alarms[uuid].timeout = setTimeout(alarm, currentTime - Date.now(), uuid, req.headers.host, 0);
     alarms[uuid].status = 'active';
 
     return res.send({ id: uuid });
 }
 
-function alarm(id, count) {
+function alarm(id, host, count) {
     console.log(`Alarmed for ${ id } on count ${ count }`);
-    sendMessage(id);
+    sendMessage(id, host);
     // Repeat the alarm every 20 seconds, if it hasn't been cancelled.
     alarms[id].timeout = setTimeout((id, count) => {
         // Turn off the alarm if there's no answer after some number of attempts (5 here)
@@ -82,17 +82,24 @@ function alarm(id, count) {
         } else {
             count++;
             // Try the alarm again
-            alarm(id, count);
+            alarm(id, host, count);
         }
-    }, 20000, id, count++);
+    }, 20000, id, host, count++);
 }
 
-function sendMessage(id) {
+function sendMessage(id, host) {
     var event = alarms[id].event;
     var key = alarms[id].key;
     if(event && key) {
         console.log(`Sending the message to event ${ event } for key ${ key } `);
-        request.post('https://maker.ifttt.com/trigger/' + event + '/with/key/' + key, (err, res, body) => {
+        var options = {
+            url: 'https://maker.ifttt.com/trigger/' + event + '/with/key/' + key,
+            body: {
+                value1: `An alarm occurred, navigate to http://${ host }/alarm/all?delete=${ id } to stop the alarm.`
+            },
+            json: true
+        };
+        request.post(options, (err, res, body) => {
             if(err) {
                 console.log(`An error occurred while sending the message to IFTTT ${ err } `);
             } else {
