@@ -1,10 +1,15 @@
 var alarms = {};
+var notifs= {};
 
 var theTemplateScript = document.getElementById('content').innerHTML;
 var theTemplate = Handlebars.compile(theTemplateScript);
 var theCompiledHtml = theTemplate();
 
 document.getElementById('root').innerHTML=theCompiledHtml;
+
+var notifContainer = document.createElement('div'); //container(flex box) for notifications
+notifContainer.classList.add('container');
+document.body.appendChild(notifContainer);
 
 document.getElementsByClassName('button')[0].onclick= () => {
     var event=document.getElementsByClassName('event')[0];
@@ -40,19 +45,39 @@ function getAlarms() {
     xhr.send(null);
 }
 
+function createNotification(key){
+    var date = new Date();
+    if((alarms[key].status==='active') && (alarms[key]["time"]-date.getTime() < 0) && !notifs[key]){//create notif only when active, time is less that zero, and when a notif has not already been made
+        var notification= document.createElement('div');
+        var text = document.createElement('p');
+        text.innerHTML='Times up!';
+        var closeBtn= document.createElement('div');
+        closeBtn.innerHTML='&times';
+        closeBtn.classList.add('close');
+        closeBtn.addEventListener('click', function(){
+           var notif= closeBtn.parentNode;
+           notif.parentNode.removeChild(notif);//remove the notification
+        });
+        notification.appendChild(text);
+        notification.appendChild(closeBtn);
+        notification.classList.add('notification');
+        notifs[key]=true; //means that notification for this timer has been set
+        document.getElementsByClassName('container')[0].appendChild(notification);
+    }
+}
+
 function updateTimerAndNotifs() { //update timer and notifications
     var smallestTime=Infinity;
     var date = new Date();
     var activeAlarms=0;
-    Object.keys(alarms).forEach(function(key){//checks to see if alarm is active
-        if(alarms[key].status==='active')
-            activeAlarms++;
-    });
-
     Object.keys(alarms).forEach(function(key){
+        if(alarms[key].status==='active')//checks to see if alarm is active
+            activeAlarms++;
+
         if(((alarms[key]["time"]-date.getTime()) < smallestTime) && (alarms[key]["time"]-date.getTime() > 0)){ //find the smallest number out of all the alarms
             smallestTime=alarms[key]["time"]-date.getTime();
         }
+        createNotification(key);
     });
 
     if(smallestTime!==Infinity){

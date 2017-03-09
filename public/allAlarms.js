@@ -1,10 +1,15 @@
 var alarms={};
+var notifs= {};
 
 var theTemplateScript = document.getElementById('content').innerHTML;
 var theTemplate = Handlebars.compile(theTemplateScript);
 var theCompiledHtml = theTemplate();
 
 document.getElementById('root').innerHTML=theCompiledHtml;
+
+var notifContainer = document.createElement('div'); //container(flex box) for notifications
+notifContainer.classList.add('container');
+document.body.appendChild(notifContainer);
 
 function getAlarms() {
     var xhr = new XMLHttpRequest();
@@ -60,16 +65,36 @@ function updateTimerAndNotifs() { //update timer and notifications
             tableRow.appendChild(delData);
             document.getElementById('table').appendChild(tableRow);
         }
+        createNotification(key);
     });
 }
-
+function createNotification(key){
+    var date = new Date();
+    if((alarms[key].status==='active') && (alarms[key]["time"]-date.getTime() < 0) && !notifs[key]){//create notif only when active, time is less that zero, and when a notif has not already been made
+        var notification= document.createElement('div');
+        var text = document.createElement('p');
+        text.innerHTML='Times up!';
+        var closeBtn= document.createElement('div');
+        closeBtn.innerHTML='&times';
+        closeBtn.classList.add('close');
+        closeBtn.addEventListener('click', function(){
+            var notif= closeBtn.parentNode;
+            notif.parentNode.removeChild(notif);//remove the notification
+        });
+        notification.appendChild(text);
+        notification.appendChild(closeBtn);
+        notification.classList.add('notification');
+        notifs[key]=true; //means that notification for this timer has been set
+        document.getElementsByClassName('container')[0].appendChild(notification);
+    }
+}
 function deleteTimer(key){
     var row=document.getElementById(key);
     row.parentNode.removeChild(row);//remove the row
     delete alarms[key];
 
     var xhr = new XMLHttpRequest();
-    xhr.open('DELETE', '/alarm/' + key, true);//////////////////////////////////////////check
+    xhr.open('DELETE', '/alarm/' + key, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(null);
 }

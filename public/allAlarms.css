@@ -1,7 +1,30 @@
 body{
-    background-color:#dadad9;
+    background-color:#ffffff;
 }
 .time{
     font-family: 'Orbitron';
     font-size: 20px;
+}
+.container{
+    display: inline-flex;
+    flex-direction: column;
+    position: absolute;
+    right:0px;
+    top:0px;
+    width: 20%;
+}
+.notification{
+    display: inline-block;
+    background-color: ghostwhite;
+    margin-bottom: 3px;
+    height: 80px;
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+}
+.close{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
 }
