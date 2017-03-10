@@ -2,3 +2,4 @@ applications:
 - name: AlarmClock
   memory: 128M
   host: AlarmClock
+  buildpack: sdk-for-nodejs
