@@ -129,10 +129,15 @@ function updateTimerAndNotifs() { //update timer and notifications
             });
             deleteBtn.classList.add('delete');
             delData.appendChild(deleteBtn);
-            var diff= alarms[key]["time"] - date.getTime();//assume positive time difference
-            var second = ('0' + Math.floor((diff/1000)% 60)).slice(-2);
-            var minute = ('0' + Math.floor((diff/1000/60))).slice(-2);
-            timeLeft.innerHTML=minute + ':' + second;
+            if(alarms[key]["time"] - date.getTime()>0) {
+                var diff = alarms[key]["time"] - date.getTime();
+                var second = ('0' + Math.floor((diff / 1000) % 60)).slice(-2);
+                var minute = ('0' + Math.floor((diff / 1000 / 60))).slice(-2);
+                timeLeft.innerHTML = minute + ':' + second;
+            }
+            else{
+                timeLeft.innerHTML='00:00';
+            }
             status.innerHTML= alarms[key].status.charAt(0).toUpperCase() + alarms[key].status.slice(1);
             deleteBtn.innerHTML='Delete';
             tableRow.appendChild(timeLeft);
