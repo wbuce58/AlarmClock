@@ -59,16 +59,18 @@ function createNotification(key){
         var notification= document.createElement('div');
         var text = document.createElement('p');
         text.innerHTML='Times up!';
+        text.classList.add('time-up');
         if(alarms[key].name) {
             var name = document.createElement('p');
+            name.classList.add('notif-name');
             name.innerHTML = 'Name: ' + alarms[key].name;
         }
         var closeBtn= document.createElement('div');
         closeBtn.innerHTML='&times';
         closeBtn.classList.add('close');
         closeBtn.addEventListener('click', function(){
-           var notif= closeBtn.parentNode;
-           notif.parentNode.removeChild(notif);//remove the notification
+            var notif= closeBtn.parentNode;
+            notif.parentNode.removeChild(notif);//remove the notification
         });
         notification.appendChild(text);
         notification.appendChild(closeBtn);

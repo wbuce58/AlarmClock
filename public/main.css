@@ -44,6 +44,14 @@ body{
 .minute{
     border: 2px solid red;
 }
+.time-up{
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+.notif-name{
+    margin: 0px;
+    font-size: 15px;
+}
 .alarms{
     text-align: center;
     display: block;

@@ -71,6 +71,7 @@ td{
 }
 .notif-name{
     margin: 0px;
+    font-size: 15px;
 }
 .close{
     position: absolute;
