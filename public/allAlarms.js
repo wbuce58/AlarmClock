@@ -30,7 +30,7 @@ function getAlarms() {
                     var noAlarm = document.createElement('div');
                     noAlarm.innerHTML = 'You have no alarm';
                     noAlarm.classList.add('no-alarm');
-                    document.body.appendChild(noAlarm);
+                    document.getElementById('main-content').appendChild(noAlarm);
                 }
                 if(document.getElementById('table')) { //if table exists and no alarm is present, delete table
                     var table=document.getElementById('table');
@@ -45,10 +45,16 @@ function getAlarms() {
             }
 
             else if(!document.getElementById('table')){//if there are alarms but no table present, create table and title
+
+                if(document.getElementsByClassName('no-alarm')[0]){
+                    var noAlarm=document.getElementsByClassName('no-alarm')[0];
+                    noAlarm.parentNode.removeChild(noAlarm);
+                }
+
                 var title=document.createElement('div');
                 title.id='title';
                 title.innerHTML='All Alarms';
-                document.body.appendChild(title);
+                document.getElementById('main-content').appendChild(title);
                 var table=document.createElement('table');
                 table.id='table';
                 table.setAttribute('cellspacing', '0');
@@ -63,7 +69,7 @@ function getAlarms() {
                 tableRow.appendChild(th2);
                 tableRow.appendChild(th3);
                 table.appendChild(tableRow);
-                document.body.appendChild(table);
+                document.getElementById('main-content').appendChild(table);
 
                 updateTimerAndNotifs();//now that alarms are present, we can update timer and notifs
                 id=window.setInterval(updateTimerAndNotifs, 1000);
@@ -164,7 +170,7 @@ function deleteTimer(key){
 }
 getAlarms();
 
-window.setInterval(getAlarms, 5000);
+window.setInterval(getAlarms, 3000);
 
 
 

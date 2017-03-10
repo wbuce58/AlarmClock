@@ -37,6 +37,9 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: white;
 }
+td{
+    width: 33%;
+}
 .container{
     display: inline-flex;
     flex-direction: column;
@@ -76,7 +79,12 @@ tr:nth-child(odd) {
     font-size: 14px;
     color: rgb(59, 119, 182);
 }
-
+.no-alarm{
+    text-align: center;
+    font-size: 30px;
+    font-family: Helvetica Neue;
+    padding-top: 50px;
+}
 .spinner {
     left: 50%;
     position: absolute;
