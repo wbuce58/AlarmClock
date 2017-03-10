@@ -19,6 +19,7 @@ const uuidV4 = require('uuid/v4');
     key: The key value defined on the Maker service in IFTTT.
     event: The event value from the Maker service in IFTTT.
     timeout: The alarm Object (used to cancel or repeat the request).
+    name: A name for the alarm.
     status: Either active or inactive.
 */ 
 var alarms = {};
@@ -41,7 +42,7 @@ function deleteAlarm(req, res) {
 
 function getAlarms(req, res) {
     var alarmsCopy = _.mapObject(alarms, (alarm, key) => {
-       return _.pick(alarm, 'time', 'event', 'status');
+       return _.pick(alarm, 'time', 'name', 'event', 'status');
     });
     return res.send(alarmsCopy);
 }
@@ -66,6 +67,10 @@ function createAlarm(req, res) {
     alarms[uuid].time = currentTime.getTime();
     alarms[uuid].timeout = setTimeout(alarm, currentTime - Date.now(), uuid, req.headers.host, 0);
     alarms[uuid].status = 'active';
+    
+    if(req.body.name) {
+        alarms[uuid].name = req.body.name;
+    }
 
     return res.send({ id: uuid });
 }
