@@ -76,3 +76,30 @@ tr:nth-child(odd) {
     font-size: 14px;
     color: rgb(59, 119, 182);
 }
+
+.spinner {
+    left: 50%;
+    position: absolute;
+}
+.spinner-circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #4178BD;
+    border-right-color: transparent;
+    animation: rotateThis 0.75s infinite linear;
+}
+
+.spinner-circle.fast {
+    animation: rotateThis 0.5s infinite linear;
+}
+
+@keyframes rotateThis {
+    0% {
+        transform: rotate( 0deg );
+    }
+    100% {
+        transform: rotate( 360deg );
+    }
+}

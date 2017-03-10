@@ -1,16 +1,12 @@
 var alarms={};
 var notifs= {};
+var alarmSeen=false;//xhr for alarms not made yet
+var id='';
 
 var theTemplateScript = document.getElementById('content').innerHTML;
 var theTemplate = Handlebars.compile(theTemplateScript);
 var theCompiledHtml = theTemplate();
 
-var deleteParam=window.location.search;
-
-if(deleteParam){ //if the url has a query parameter called delete, delete the timer
-  var deleteId= deleteParam.slice(deleteParam.indexOf('=')+1);
-  deleteTimer(deleteId);
-}
 document.getElementById('root').innerHTML=theCompiledHtml;
 
 var notifContainer = document.createElement('div'); //container(flex box) for notifications
@@ -21,7 +17,66 @@ function getAlarms() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
+
             alarms = JSON.parse(xhr.responseText); //update alarm object
+
+            if(document.getElementsByClassName('spinner')[0]){//delete spinner if present
+                var spinner=document.getElementsByClassName('spinner')[0];
+                spinner.parentNode.removeChild(spinner);
+            }
+
+            if(Object.keys(alarms).length === 0 ){//if alarm object is empty
+                if(!document.getElementsByClassName('no-alarm')[0]) {//if no alarm div is not present
+                    var noAlarm = document.createElement('div');
+                    noAlarm.innerHTML = 'You have no alarm';
+                    noAlarm.classList.add('no-alarm');
+                    document.body.appendChild(noAlarm);
+                }
+                if(document.getElementById('table')) { //if table exists and no alarm is present, delete table
+                    var table=document.getElementById('table');
+                    table.parentNode.removeChild(table);
+                    var title=document.getElementById('title');//delete title as well
+                    title.parentNode.removeChild(title);
+                }
+                if(id) {//if there is a update notif interval set, delete it
+                    clearInterval(id);
+                    id='';
+                }
+            }
+
+            else if(!document.getElementById('table')){//if there are alarms but no table present, create table and title
+                var title=document.createElement('div');
+                title.id='title';
+                title.innerHTML='All Alarms';
+                document.body.appendChild(title);
+                var table=document.createElement('table');
+                table.id='table';
+                table.setAttribute('cellspacing', '0');
+                var tableRow=document.createElement('tr');
+                var th1=document.createElement('th');
+                th1.innerHTML='Alarm';
+                var th2=document.createElement('th');
+                th2.innerHTML='Status';
+                var th3=document.createElement('th');
+                th3.innerHTML='Action';
+                tableRow.appendChild(th1);
+                tableRow.appendChild(th2);
+                tableRow.appendChild(th3);
+                table.appendChild(tableRow);
+                document.body.appendChild(table);
+
+                updateTimerAndNotifs();//now that alarms are present, we can update timer and notifs
+                id=window.setInterval(updateTimerAndNotifs, 1000);
+
+
+                var deleteParam=window.location.search; //delete once all alarms have been loaded
+
+                if(deleteParam){ //if the url has a query parameter called delete, delete the timer
+                    var deleteId= deleteParam.slice(deleteParam.indexOf('=')+1);
+                    deleteTimer(deleteId);
+                }
+
+            }
         }
     };
     xhr.open('GET', '/alarm', true);
@@ -70,6 +125,7 @@ function updateTimerAndNotifs() { //update timer and notifications
             tableRow.appendChild(status);
             tableRow.appendChild(delData);
             document.getElementById('table').appendChild(tableRow);
+
         }
         createNotification(key);
     });
@@ -96,18 +152,19 @@ function createNotification(key){
 }
 function deleteTimer(key){
     var row=document.getElementById(key);
-    row.parentNode.removeChild(row);//remove the row
-    delete alarms[key];
+    if(row) {
+        row.parentNode.removeChild(row);//remove the row
+        delete alarms[key];
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('DELETE', '/alarm/' + key, true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(null);
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', '/alarm/' + key, true);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(null);
+    }
 }
 getAlarms();
-updateTimerAndNotifs();
+
 window.setInterval(getAlarms, 5000);
-window.setInterval(updateTimerAndNotifs, 1000);
 
 
 
