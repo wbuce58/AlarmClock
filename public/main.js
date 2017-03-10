@@ -59,6 +59,10 @@ function createNotification(key){
         var notification= document.createElement('div');
         var text = document.createElement('p');
         text.innerHTML='Times up!';
+        if(alarms[key].name) {
+            var name = document.createElement('p');
+            name.innerHTML = 'Name: ' + alarms[key].name;
+        }
         var closeBtn= document.createElement('div');
         closeBtn.innerHTML='&times';
         closeBtn.classList.add('close');
@@ -68,6 +72,9 @@ function createNotification(key){
         });
         notification.appendChild(text);
         notification.appendChild(closeBtn);
+        if(alarms[key].name){
+            notification.appendChild(name);
+        }
         notification.classList.add('notification');
         notifs[key]=true; //means that notification for this timer has been set
         document.getElementsByClassName('container')[0].appendChild(notification);

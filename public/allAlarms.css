@@ -38,7 +38,7 @@ tr:nth-child(odd) {
     background-color: white;
 }
 td{
-    width: 33%;
+    width: 25%;
 }
 .container{
     display: inline-flex;
@@ -64,6 +64,13 @@ td{
 }
 .notification:nth-child(odd){
     border-left-color: black;
+}
+.time-up{
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+.notif-name{
+    margin: 0px;
 }
 .close{
     position: absolute;

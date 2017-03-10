@@ -62,12 +62,15 @@ function getAlarms() {
                 var th1=document.createElement('th');
                 th1.innerHTML='Alarm';
                 var th2=document.createElement('th');
-                th2.innerHTML='Status';
+                th2.innerHTML='Name';
                 var th3=document.createElement('th');
-                th3.innerHTML='Action';
+                th3.innerHTML='Status';
+                var th4=document.createElement('th');
+                th4.innerHTML='Action';
                 tableRow.appendChild(th1);
                 tableRow.appendChild(th2);
                 tableRow.appendChild(th3);
+                tableRow.appendChild(th4);
                 table.appendChild(tableRow);
                 document.getElementById('main-content').appendChild(table);
 
@@ -99,11 +102,11 @@ function updateTimerAndNotifs() { //update timer and notifications
                 var seconds = ('0' + Math.floor((difference/1000)% 60)).slice(-2);
                 var minutes = ('0' + Math.floor((difference/1000/60))).slice(-2);
                 document.getElementById(key).children[0].innerHTML = minutes + ':' + seconds;
-                document.getElementById(key).children[1].innerHTML =  alarms[key].status.charAt(0).toUpperCase() + alarms[key].status.slice(1);
+                document.getElementById(key).children[2].innerHTML =  alarms[key].status.charAt(0).toUpperCase() + alarms[key].status.slice(1);
             }
             else {
                 document.getElementById(key).children[0].innerHTML = '00:00'; //otherwise set it to 00:00
-                document.getElementById(key).children[1].innerHTML = alarms[key].status.charAt(0).toUpperCase() + alarms[key].status.slice(1);
+                document.getElementById(key).children[2].innerHTML = alarms[key].status.charAt(0).toUpperCase() + alarms[key].status.slice(1);
             }
         }
         else{//create the row for the new timer
@@ -111,6 +114,11 @@ function updateTimerAndNotifs() { //update timer and notifications
             tableRow.id=key;
             var timeLeft = document.createElement('td');
             timeLeft.classList.add('time');
+            var name =document.createElement('td');
+            name.classList.add('name');
+            if(alarms[key].name) {
+                name.innerHTML = alarms[key].name;
+            }
             var status = document.createElement('td');
             status.classList.add('status');
             var delData = document.createElement('td');
@@ -128,6 +136,7 @@ function updateTimerAndNotifs() { //update timer and notifications
             status.innerHTML= alarms[key].status.charAt(0).toUpperCase() + alarms[key].status.slice(1);
             deleteBtn.innerHTML='Delete';
             tableRow.appendChild(timeLeft);
+            tableRow.appendChild(name);
             tableRow.appendChild(status);
             tableRow.appendChild(delData);
             document.getElementById('table').appendChild(tableRow);
@@ -142,6 +151,12 @@ function createNotification(key){
         var notification= document.createElement('div');
         var text = document.createElement('p');
         text.innerHTML='Times up!';
+        text.classList.add('time-up');
+        if(alarms[key].name) {
+            var name = document.createElement('p');
+            name.classList.add('notif-name');
+            name.innerHTML = 'Name: ' + alarms[key].name;
+        }
         var closeBtn= document.createElement('div');
         closeBtn.innerHTML='&times';
         closeBtn.classList.add('close');
@@ -151,6 +166,9 @@ function createNotification(key){
         });
         notification.appendChild(text);
         notification.appendChild(closeBtn);
+        if(alarms[key].name){
+            notification.appendChild(name);
+        }
         notification.classList.add('notification');
         notifs[key]=true; //means that notification for this timer has been set
         document.getElementsByClassName('container')[0].appendChild(notification);
