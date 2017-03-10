@@ -22,9 +22,16 @@ document.getElementsByClassName('button')[0].onclick= () => {
         key.setAttribute('required', true);
         readySubmit=false;
     }
+    else{
+        event.removeAttribute('required');
+        key.removeAttribute('required');
+    }
     if(minute && !minute.value){
         minute.setAttribute('required', true);
         readySubmit=false
+    }
+    else{
+        minute.removeAttribute('required');
     }
     if(readySubmit){
         var xhr = new XMLHttpRequest();
