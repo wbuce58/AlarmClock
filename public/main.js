@@ -15,6 +15,7 @@ document.getElementsByClassName('button')[0].onclick= () => {
     var event=document.getElementsByClassName('event')[0];
     var key = document.getElementsByClassName('key')[0];
     var minute = document.getElementsByClassName('minute')[0];
+    var name=document.getElementsByClassName('name')[0];
     var readySubmit=true;
 
     if((event.value && !key.value) || (!event.value && key.value)){
@@ -37,7 +38,7 @@ document.getElementsByClassName('button')[0].onclick= () => {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/alarm', true);
         xhr.setRequestHeader('Content-type', 'application/json');
-        xhr.send(JSON.stringify({'event': event.value, 'key': key.value, 'time': (minute.value * 60 * 1000)}));
+        xhr.send(JSON.stringify({'event': event.value, 'name': name.value, 'key': key.value, 'time': (minute.value * 60 * 1000)}));
     }
 };
 
