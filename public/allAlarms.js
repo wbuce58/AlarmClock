@@ -28,7 +28,7 @@ function getAlarms() {
             if(Object.keys(alarms).length === 0 ){//if alarm object is empty
                 if(!document.getElementsByClassName('no-alarm')[0]) {//if no alarm div is not present
                     var noAlarm = document.createElement('div');
-                    noAlarm.innerHTML = 'You have no alarm';
+                    noAlarm.innerHTML = 'You have no alarms';
                     noAlarm.classList.add('no-alarm');
                     document.getElementById('main-content').appendChild(noAlarm);
                 }
