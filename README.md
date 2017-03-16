@@ -51,7 +51,7 @@ The Maker key is used to uniquely identify your Maker service from someone else'
 ## Setting up your development toolchain
 To make things a bit easier, you will use the starter code available in this GitHub repository. You will create a toolchain with a copy of the code, a pipeline to build and deploy the code, and even an editor to tinker with the code. Sounds like a lot of work? Not really! With just a few clicks, you will be all setup.
 
-1. Begin by logging into [Bluemix](https://console.ng.bluemix.net). Your view may differ, if you have existing applications.
+1. Begin by logging into [Bluemix](https://interconnectlabs.mybluemix.net/). Your view may differ, if you have existing applications.
 1. From the hamburger menu near the top left of the screen click **Services** and then click **DevOps**.
 
   ![Hamburger Menu](assets/README-cb995.png)
@@ -128,3 +128,5 @@ There are two methods for disabling an alarm:
 - [ ] In your notification (e.g. email or text message), click on the link to disable the alarm.
 
 **Note:** In case of issues, to disable all alarms, stop the app.
+
+[Scan this QR code](https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=QR235) and **go claim a T-Shirt** from the info desk!
