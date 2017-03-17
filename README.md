@@ -29,7 +29,8 @@ IFTTT allows you to create an applet which will complete an action based on a tr
 1. Navigate to https://ifttt.com and choose **My Applets** from the navigation bar.
 1. In the My Applets page, click **New Applet**.
 1. In the statement `if +this then that`, click **+this**.
-1. In the services selection page, enter `maker`, and select the Maker service. Maker can be used to receive a web request which will trigger an action.
+1. In the services selection page, enter `Maker Webhooks`, and select the Maker Webhook service. Maker Webhook can be used to receive a web request which will trigger an action.
+1. If prompted, select `Connect`
 1. Select the trigger `Receive a web request`.
 1. Choose an event name, note the name down for later use, and click **Create trigger**.
 1. The statement now reads `if maker then +that`, click **+that**.
@@ -42,7 +43,7 @@ IFTTT allows you to create an applet which will complete an action based on a tr
 The Maker key is used to uniquely identify your Maker service from someone else's.
 
 1. Navigate to https://ifttt.com and choose Search from the navigation bar.
-1. In the Search page, enter `maker` to filter for the Maker service. Click on the Maker service.
+1. In the Search page, enter `Maker Webhooks` to filter for the Maker Webhook service. Click on the Maker Webhooks service.
 1. In the top right of the page, click **Settings**.
 1. Copy and navigate to the URL location.
 1. The key is displayed. Note this value down for future use.
@@ -60,7 +61,7 @@ To make things a bit easier, you will use the starter code available in this Git
 1. The view will be slightly different depending on if you have any existing toolchains, but in either case click on **Create a toolchain** to continue.
 1. Click on the **Simple Cloud Foundry toolchain** template. This template is a great way to get started when developing a simple Cloud Foundry app.
 
-  ![Toolchain Templates](assets/README-3ca22.png)
+  ![Toolchain Templates](assets/README-c8c04.png)
 1. This template will create a toolchain with:
   - GitHub: Code repository and issue tracker.
   - Delivery Pipeline: Continuous build, test and deployment engine.
