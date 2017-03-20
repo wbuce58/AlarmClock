@@ -92,18 +92,17 @@ To make things a bit easier, you will use the starter code available in this Git
   ![](assets/README-dacd6.png)
 
 ## Uh oh!
-1. From the toolchain overview page, click on the **Delivery Pipeline** card to see how your deployment is going.  The build was started automatically as part of the setup from the template.
+1. From the toolchain overview page, click on the **Delivery Pipeline** card to see how your deployment is going.  The build was started automatically as part of the setup from the template.  
   ![](assets/README-7f3f9.png)
 1. There are two stages in this Delivery Pipeline.  
   - The first stage will pull the code from the GitHub repository to create a build. This is set to happen automatically on a commit, and you will see this later in the lab.
-  - The second stage will deploy the code to Bluemix to run your app.  But wait!  There was a problem with the deploy.  Notice the red banner indicating the stage failed.
-
+  - The second stage will deploy the code to Bluemix to run your app.  But wait!  There was a problem with the deploy.  Notice the red banner indicating the stage failed.  
     ![Deploy Failed](assets/README-84779.png)
 
 ## Let's fix it
-1. Navigate back to the toolchain overview by clicking the back arrow.
+1. Navigate back to the toolchain overview by clicking the back arrow.  
     ![Toolchain back arrow](assets/README-50e6f.png)
-1. Click on the **Eclipse Orion Web IDE** tool card to get to the web editor.
+1. Click on the **Eclipse Orion Web IDE** tool card to get to the web editor.  
     ![Orion tool card](assets/README-1e1bf.png)
 1. In the web editor fix the issue.
  - [ ] In the navigator, expand AlarmClock, if it isn't already, and select the file to edit - manifest.yml
@@ -119,7 +118,7 @@ To make things a bit easier, you will use the starter code available in this Git
 3. Once the application is deployed, the Deploy stage will turn green and a direct link to the running application will be available.  Click on it to get to your application.
 
 ## Set an alarm
-- [ ] In the application, enter the key and event (if you have configured IFTTT), a name for the alarm, and time for the alarm to go off (e.g. 10 seconds).
+- [ ] In the application, enter the key and event (if you have configured IFTTT), a name for the alarm, and time for the alarm to go off (e.g. 10 seconds).  
   ![Set Alarm](assets/README-48d06.png)
 
 ## Disable an alarm
