@@ -28,35 +28,26 @@ IFTTT allows you to create an applet which will complete an action based on a tr
 
 1. Navigate to https://ifttt.com and choose **My Applets** from the navigation bar.
 1. In the My Applets page, click **New Applet**.
-
   ![](assets/README-28167.png)
 1. In the statement `if +this then that`, click **+this**.
-
   ![this](assets/README-95bab.png)
 1. In the services selection page, enter `Maker Webhooks`, and select the Maker Webhook service. Maker Webhook can be used to receive a web request which will trigger an action.
-
   ![Make Webhooks](assets/README-b7f3d.png)
 1. If prompted, select `Connect`
 1. Select the trigger `Receive a web request`.
-
   ![Receive a web request](assets/README-ab624.png)
 1. Choose an event name, such as **Alarm**.  The event name will be used as the **trigger name** later in the lab, so make a note of it. Click **Create trigger** to create the trigger.
-
   ![Create Trigger](assets/README-dac6f.png)
 1. The statement now reads `if maker then +that`, click **+that**.
-
   ![that](assets/README-179e9.png)
 1. In the services selection page, you will select the notification method when the alarm is activated. For example, to receive an email, select the Email service. Alternatively, to receive a text message, choose the SMS service.
-
   ![email service](assets/README-e5046.png)
 1. Depending on the service select, apply the action.
-
 1. Complete the action fields. You can choose to update the notification subject and body, or leave them as is. Click **Create action**.
-
   ![Create Action](assets/README-11f89.png)
 1. Review the applet and click **Finish**.
-
   ![](assets/README-b15a3.png)
+
 #### Finding your IFTTT Maker key
 The Maker key is used to uniquely identify your Maker service from someone else's.
 
