@@ -28,17 +28,35 @@ IFTTT allows you to create an applet which will complete an action based on a tr
 
 1. Navigate to https://ifttt.com and choose **My Applets** from the navigation bar.
 1. In the My Applets page, click **New Applet**.
+
+  ![](assets/README-28167.png)
 1. In the statement `if +this then that`, click **+this**.
+
+  ![this](assets/README-95bab.png)
 1. In the services selection page, enter `Maker Webhooks`, and select the Maker Webhook service. Maker Webhook can be used to receive a web request which will trigger an action.
+
+  ![Make Webhooks](assets/README-b7f3d.png)
 1. If prompted, select `Connect`
 1. Select the trigger `Receive a web request`.
-1. Choose an event name, note the name down for later use, and click **Create trigger**.
+
+  ![Receive a web request](assets/README-ab624.png)
+1. Choose an event name, such as **Alarm**.  The event name will be used as the **trigger name** later in the lab, so make a note of it. Click **Create trigger** to create the trigger.
+
+  ![Create Trigger](assets/README-dac6f.png)
 1. The statement now reads `if maker then +that`, click **+that**.
+
+  ![that](assets/README-179e9.png)
 1. In the services selection page, you will select the notification method when the alarm is activated. For example, to receive an email, select the Email service. Alternatively, to receive a text message, choose the SMS service.
+
+  ![email service](assets/README-e5046.png)
 1. Depending on the service select, apply the action.
+
 1. Complete the action fields. You can choose to update the notification subject and body, or leave them as is. Click **Create action**.
+
+  ![Create Action](assets/README-11f89.png)
 1. Review the applet and click **Finish**.
 
+  ![](assets/README-b15a3.png)
 #### Finding your IFTTT Maker key
 The Maker key is used to uniquely identify your Maker service from someone else's.
 
@@ -46,7 +64,8 @@ The Maker key is used to uniquely identify your Maker service from someone else'
 1. In the Search page, enter `Maker Webhooks` to filter for the Maker Webhook service. Click on the Maker Webhooks service.
 1. In the top right of the page, click **Settings**.
 1. Copy and navigate to the URL location.
-1. The key is displayed. Note this value down for future use.
+1. The key is displayed. This will be used as the **key** field when setting an alarm.
+  ![Maker Webhook Key](assets/README-42256.png)
 
 
 ## Setting up your development toolchain
@@ -121,6 +140,8 @@ To make things a bit easier, you will use the starter code available in this Git
 
 ## Set an alarm
 - [ ] In the application, enter the key and event (if you have configured IFTTT), a name for the alarm, and time for the alarm to go off (e.g. 10 seconds).
+
+  ![Set Alarm](assets/README-48d06.png)
 
 ## Disable an alarm
 There are two methods for disabling an alarm:
