@@ -27,25 +27,25 @@ Note: You can still continue with the lab, if you do not create an IFTTT account
 IFTTT allows you to create an applet which will complete an action based on a trigger. To configure IFTTT to send a notification, such as an email or text message, complete the following steps:
 
 1. Navigate to https://ifttt.com and choose **My Applets** from the navigation bar.
-1. In the My Applets page, click **New Applet**.
+1. In the My Applets page, click **New Applet**.  
   ![](assets/README-28167.png)
-1. In the statement `if +this then that`, click **+this**.
+1. In the statement `if +this then that`, click **+this**.  
   ![this](assets/README-95bab.png)
-1. In the services selection page, enter `Maker Webhooks`, and select the Maker Webhook service. Maker Webhook can be used to receive a web request which will trigger an action.
+1. In the services selection page, enter `Maker Webhooks`, and select the Maker Webhook service. Maker Webhook can be used to receive a web request which will trigger an action.  
   ![Make Webhooks](assets/README-b7f3d.png)
 1. If prompted, select `Connect`
-1. Select the trigger `Receive a web request`.
+1. Select the trigger `Receive a web request`.  
   ![Receive a web request](assets/README-ab624.png)
-1. Choose an event name, such as **Alarm**.  The event name will be used as the **trigger name** later in the lab, so make a note of it. Click **Create trigger** to create the trigger.
+1. Choose an event name, such as **Alarm**.  The event name will be used as the **trigger name** later in the lab, so make a note of it. Click **Create trigger** to create the trigger.  
   ![Create Trigger](assets/README-dac6f.png)
-1. The statement now reads `if maker then +that`, click **+that**.
+1. The statement now reads `if maker then +that`, click **+that**.  
   ![that](assets/README-179e9.png)
-1. In the services selection page, you will select the notification method when the alarm is activated. For example, to receive an email, select the Email service. Alternatively, to receive a text message, choose the SMS service.
+1. In the services selection page, you will select the notification method when the alarm is activated. For example, to receive an email, select the Email service. Alternatively, to receive a text message, choose the SMS service.  
   ![email service](assets/README-e5046.png)
 1. Depending on the service select, apply the action.
-1. Complete the action fields. You can choose to update the notification subject and body, or leave them as is. Click **Create action**.
+1. Complete the action fields. You can choose to update the notification subject and body, or leave them as is. Click **Create action**.  
   ![Create Action](assets/README-11f89.png)
-1. Review the applet and click **Finish**.
+1. Review the applet and click **Finish**.  
   ![](assets/README-b15a3.png)
 
 #### Finding your IFTTT Maker key
@@ -55,7 +55,7 @@ The Maker key is used to uniquely identify your Maker service from someone else'
 1. In the Search page, enter `Maker Webhooks` to filter for the Maker Webhook service. Click on the Maker Webhooks service.
 1. In the top right of the page, click **Settings**.
 1. Copy and navigate to the URL location.
-1. The key is displayed. This will be used as the **key** field when setting an alarm.
+1. The key is displayed. This will be used as the **key** field when setting an alarm.  
   ![Maker Webhook Key](assets/README-42256.png)
 
 
@@ -63,24 +63,24 @@ The Maker key is used to uniquely identify your Maker service from someone else'
 To make things a bit easier, you will use the starter code available in this GitHub repository. You will create a toolchain with a copy of the code, a pipeline to build and deploy the code, and even an editor to tinker with the code. Sounds like a lot of work? Not really! With just a few clicks, you will be all setup.
 
 1. Begin by logging into [Bluemix](https://interconnectlabs.mybluemix.net/). Your view may differ, if you have existing applications.
-1. From the hamburger menu near the top left of the screen click **Services** and then click **DevOps**.
-  ![Hamburger Menu](assets/README-cb995.png)
+1. From the hamburger menu near the top left of the screen click **Services** and then click **DevOps**.  
+  ![Hamburger Menu](assets/README-cb995.png)  
   ![DevOps Services](assets/README-f0736.png)
 1. The view will be slightly different depending on if you have any existing toolchains, but in either case click on **Create a toolchain** to continue.
-1. Click on the **Simple Cloud Foundry toolchain** template. This template is a great way to get started when developing a simple Cloud Foundry app.
+1. Click on the **Simple Cloud Foundry toolchain** template. This template is a great way to get started when developing a simple Cloud Foundry app.  
   ![Toolchain Templates](assets/README-c8c04.png)
 1. This template will create a toolchain with:
   - GitHub: Code repository and issue tracker.
   - Delivery Pipeline: Continuous build, test and deployment engine.
   - Eclipse Orion Web IDE: Code editor.
-  - Bluemix: Deployment target.
+  - Bluemix: Deployment target.  
   ![Simple Cloud Foundry Template Overview](assets/README-143d9.png)
-1. Change the name of the toolchain to something more meaningful, like **AlarmClock**. Note: this name must be unique, so if you get a naming conflict, simply pick a new name.
+1. Change the name of the toolchain to something more meaningful, like **AlarmClock**. Note: this name must be unique, so if you get a naming conflict, simply pick a new name.  
   ![Toolchain name](assets/README-26115.png)
 1. When setting up GitHub, you want to leverage the provided starter code.  
-  1. Click on the GitHub icon and change the Source repository URL to: https://github.com/melickm/OpenToolchainAlarmClock
+  1. Click on the GitHub icon and change the Source repository URL to: https://github.com/melickm/OpenToolchainAlarmClock  
     ![](assets/README-84dbe.png)
-  - **Note:** If you haven't Authorized with Github.com, click the **Authorize** button and follow the instructions to authorize your Bluemix account to access your GitHub account.
+  - **Note:** If you haven't Authorized with Github.com, click the **Authorize** button and follow the instructions to authorize your Bluemix account to access your GitHub account.  
     ![Authorize GitHub](assets/README-da7b2.png)
 1. Click **Create**. This is where the magic happens :)
   - The toolchain is created.
@@ -88,7 +88,7 @@ To make things a bit easier, you will use the starter code available in this Git
   - The delivery pipeline is created and triggered.
   - The toolchain is associated with your app.  
   - A trigger is added to the delivery pipeline, so when you push changes to the toolchain's GitHub repo, the delivery pipeline automatically builds and deploys the app.
-1. The toolchain overview page will open with a card representation of each of the tools in the toolchain. In the next section, you will use the tool cards to access the tools.  
+1. The toolchain overview page will open with a card representation of each of the tools in the toolchain. In the next section, you will use the tool cards to access the tools.    
   ![](assets/README-dacd6.png)
 
 ## Uh oh!
