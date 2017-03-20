@@ -64,30 +64,23 @@ To make things a bit easier, you will use the starter code available in this Git
 
 1. Begin by logging into [Bluemix](https://interconnectlabs.mybluemix.net/). Your view may differ, if you have existing applications.
 1. From the hamburger menu near the top left of the screen click **Services** and then click **DevOps**.
-
   ![Hamburger Menu](assets/README-cb995.png)
-
   ![DevOps Services](assets/README-f0736.png)
 1. The view will be slightly different depending on if you have any existing toolchains, but in either case click on **Create a toolchain** to continue.
 1. Click on the **Simple Cloud Foundry toolchain** template. This template is a great way to get started when developing a simple Cloud Foundry app.
-
   ![Toolchain Templates](assets/README-c8c04.png)
 1. This template will create a toolchain with:
   - GitHub: Code repository and issue tracker.
   - Delivery Pipeline: Continuous build, test and deployment engine.
   - Eclipse Orion Web IDE: Code editor.
   - Bluemix: Deployment target.
-
   ![Simple Cloud Foundry Template Overview](assets/README-143d9.png)
 1. Change the name of the toolchain to something more meaningful, like **AlarmClock**. Note: this name must be unique, so if you get a naming conflict, simply pick a new name.
-
   ![Toolchain name](assets/README-26115.png)
 1. When setting up GitHub, you want to leverage the provided starter code.  
   1. Click on the GitHub icon and change the Source repository URL to: https://github.com/melickm/OpenToolchainAlarmClock
-
     ![](assets/README-84dbe.png)
   - **Note:** If you haven't Authorized with Github.com, click the **Authorize** button and follow the instructions to authorize your Bluemix account to access your GitHub account.
-
     ![Authorize GitHub](assets/README-da7b2.png)
 1. Click **Create**. This is where the magic happens :)
   - The toolchain is created.
@@ -96,12 +89,10 @@ To make things a bit easier, you will use the starter code available in this Git
   - The toolchain is associated with your app.  
   - A trigger is added to the delivery pipeline, so when you push changes to the toolchain's GitHub repo, the delivery pipeline automatically builds and deploys the app.
 1. The toolchain overview page will open with a card representation of each of the tools in the toolchain. In the next section, you will use the tool cards to access the tools.  
-
   ![](assets/README-dacd6.png)
 
 ## Uh oh!
 1. From the toolchain overview page, click on the **Delivery Pipeline** card to see how your deployment is going.  The build was started automatically as part of the setup from the template.
-
   ![](assets/README-7f3f9.png)
 1. There are two stages in this Delivery Pipeline.  
   - The first stage will pull the code from the GitHub repository to create a build. This is set to happen automatically on a commit, and you will see this later in the lab.
@@ -111,10 +102,8 @@ To make things a bit easier, you will use the starter code available in this Git
 
 ## Let's fix it
 1. Navigate back to the toolchain overview by clicking the back arrow.
-
     ![Toolchain back arrow](assets/README-50e6f.png)
 1. Click on the **Eclipse Orion Web IDE** tool card to get to the web editor.
-
     ![Orion tool card](assets/README-1e1bf.png)
 1. In the web editor fix the issue.
  - [ ] In the navigator, expand AlarmClock, if it isn't already, and select the file to edit - manifest.yml
@@ -131,7 +120,6 @@ To make things a bit easier, you will use the starter code available in this Git
 
 ## Set an alarm
 - [ ] In the application, enter the key and event (if you have configured IFTTT), a name for the alarm, and time for the alarm to go off (e.g. 10 seconds).
-
   ![Set Alarm](assets/README-48d06.png)
 
 ## Disable an alarm
