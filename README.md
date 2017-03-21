@@ -69,15 +69,15 @@ To make things a bit easier, you will use the starter code available in this Git
   - GitHub: Code repository and issue tracker.
   - Delivery Pipeline: Continuous build, test and deployment engine.
   - Eclipse Orion Web IDE: Code editor.
-  - Bluemix: Deployment target.  
-  ![Simple Cloud Foundry Template Overview](assets/README-143d9.png)
+  - Bluemix: Deployment target.   
+  ![Simple Cloud Foundry Template Overview](assets/README-143d9.png)  
 1. Change the name of the toolchain to something more meaningful, like **AlarmClock**. Note: this name must be unique, so if you get a naming conflict, simply pick a new name.  
-  ![Toolchain name](assets/README-26115.png)
+  ![Toolchain name](assets/README-26115.png)  
 1. When setting up GitHub, you want to leverage the provided starter code.  
   1. Click on the GitHub icon and change the Source repository URL to: https://github.com/melickm/OpenToolchainAlarmClock  
     ![](assets/README-84dbe.png)
   - **Note:** If you haven't Authorized with Github.com, click the **Authorize** button and follow the instructions to authorize your Bluemix account to access your GitHub account.  
-    ![Authorize GitHub](assets/README-da7b2.png)
+    ![Authorize GitHub](assets/README-da7b2.png)  
 1. Click **Create**. This is where the magic happens :)
   - The toolchain is created.
   - The starter code is cloned into your GitHub repository.
