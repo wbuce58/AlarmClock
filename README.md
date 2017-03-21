@@ -12,8 +12,7 @@ You will:
 Before getting started, you will need to obtain a valid ID for Bluemix, GitHub.com and, optionally, IFTTT. Don't worry you can try them all for free!  If you don't have an existing ID, sign up for one by following the steps below:
 
 ### IBM Bluemix Account
-1. Navigate to https://console.ng.bluemix.net/registration/ and sign up
-1. As part of the Bluemix registration process, you will receive an email asking you to confirm your account.  You are not registered until you confirm your account.  If you do not receive a confirmation email, send a note to [id@bluemix.net](mailto:id@bluemix.net).
+1. Navigate to [Bluemix](https://interconnectlabs.mybluemix.net/) and sign up or validate you are an existing user.
 
 ### GitHub.com
 1. Navigate to https://github.com, review the [terms of service](https://help.github.com/articles/github-terms-of-service/), and, if you agree with the terms, create an account.
@@ -62,10 +61,7 @@ The Maker key is used to uniquely identify your Maker service from someone else'
 ## Setting up your development toolchain
 To make things a bit easier, you will use the starter code available in this GitHub repository. You will create a toolchain with a copy of the code, a pipeline to build and deploy the code, and even an editor to tinker with the code. Sounds like a lot of work? Not really! With just a few clicks, you will be all setup.
 
-1. Begin by logging into [Bluemix](https://interconnectlabs.mybluemix.net/). Your view may differ, if you have existing applications.
-1. From the hamburger menu near the top left of the screen click **Services** and then click **DevOps**.  
-  ![Hamburger Menu](assets/README-cb995.png)  
-  ![DevOps Services](assets/README-f0736.png)
+1. Begin by logging into [Bluemix](https://bluemix.net/devops).
 1. The view will be slightly different depending on if you have any existing toolchains, but in either case click on **Create a toolchain** to continue.
 1. Click on the **Simple Cloud Foundry toolchain** template. This template is a great way to get started when developing a simple Cloud Foundry app.  
   ![Toolchain Templates](assets/README-c8c04.png)
@@ -129,4 +125,13 @@ There are two methods for disabling an alarm:
 
 **Note:** In case of issues, to disable all alarms, stop the app.
 
-[Scan this QR code](https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=QR235) and **go claim a T-Shirt** from the info desk!
+## Before you go
+1. Delete your running alarm clock app. Don't worry, you can always deploy a new copy from the pipeline later.
+  1. Go to the app view in bluemix: http://bluemix.net/apps
+  1. Find your app and click delete from the three dot menu on the right
+  ![delete app](assets/README-40a39.png)
+1. Don't forget to log out of:
+  - [Bluemix](https://bluemix.net)
+  - [GitHub](https://github.com)
+  - [IFTTT](https://ifttt.com)
+1. [Scan this QR code](https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=QR235) and **go claim a T-Shirt** from the info desk!
